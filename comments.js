@@ -1,19 +1,16 @@
 // Create Web Server
-const express = require('express');
-const app = express();
-// Create Web Server
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-// Create Web Server
-const comments = require('./comments');
-app.get('/comments', (req, res) => {
-    res.json(comments.getComments());
-});
-app.post('/comments', (req, res) => {
-    comments.addComment(req.body);
-    res.json(comments.getComments());
-});
-app.listen(3001, () => {
-    console.log('Web Server is running on port 3001!');
-});
+// Create a Node.js file that opens the requested file and returns the content to the client. If anything goes wrong, throw a 404 error:
+
+// Use the createServer method to create a web server:
+// Use the createReadStream method to read the requested file:
+// If the file is not found, return a 404 error:
+
+var http = require('http');
+var fs = require('fs');
+http.createServer(function (req, res) {
+  fs.readFile('demofile1.html', function(err, data) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    return res.end();
+  });
+}).listen(8080);
